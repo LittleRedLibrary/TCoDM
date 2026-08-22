@@ -88,7 +88,7 @@ def main() -> None:
         "hits": require_nonnegative("hits", work.hits),
         "kudos": require_nonnegative("kudos", work.kudos),
         "comments": require_nonnegative("comments", work.comments),
-        "bookmarks": require_nonnegative("bookmarks", work.bookmarks),
+        "public_bookmarks": require_nonnegative("public_bookmarks", work.bookmarks),
         "words": require_nonnegative("words", work.words),
         "ao3_updated_at": work.date_updated.isoformat() if work.date_updated else None,
     }
@@ -139,7 +139,7 @@ def main() -> None:
         f"{snapshot['hits']} hits,",
         f"{snapshot['kudos']} kudos,",
         f"{snapshot['comments']} comments,",
-        f"{snapshot['bookmarks']} bookmarks,",
+        f"{snapshot['public_bookmarks']} public bookmarks,",
         f"{snapshot['chapters']} chapters,",
         f"{snapshot['words']} words",
     )
