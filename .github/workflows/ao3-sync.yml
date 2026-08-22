@@ -1,0 +1,51 @@
+name: AO3 Pulse Sync
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */12 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ao3-pulse-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install collector
+        run: pip install -r requirements.txt
+
+      - name: Collect public AO3 snapshot
+        env:
+          AO3_WORK_URL: ${{ vars.AO3_WORK_URL }}
+          AO3_EXPECTED_TITLE: "The Crew of Dracule Mihawk: A Cross Guild Romance"
+          AO3_TIMEZONE: "America/New_York"
+        run: python ao3_sync.py
+
+      - name: Commit snapshot if changed
+        shell: bash
+        run: |
+          if git diff --quiet -- ao3-snapshots.json; then
+            echo "No snapshot-file change to commit."
+            exit 0
+          fi
+          git config user.name "ao3-pulse-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ao3-snapshots.json
+          git commit -m "Update AO3 Pulse snapshot"
+          git push
