@@ -5,7 +5,7 @@
     "work_url": "https://archiveofourown.org/works/89729971",
     "title": "The Crew of Dracule Mihawk: A Cross Guild Romance"
   },
-  "generated_at": "2026-10-06T23:26:38-04:00",
+  "generated_at": "2026-10-07T14:11:13-04:00",
   "snapshots": [
     {
       "source": "historical",
@@ -910,6 +910,17 @@
       "public_bookmarks": 3,
       "words": 401694,
       "ao3_updated_at": "2026-10-06T00:00:00"
+    },
+    {
+      "observed_at": "2026-10-07T14:11:13-04:00",
+      "source": "ao3_api",
+      "chapters": 77,
+      "hits": 1524,
+      "kudos": 17,
+      "comments": 28,
+      "public_bookmarks": 3,
+      "words": 408550,
+      "ao3_updated_at": "2026-10-07T00:00:00"
     }
   ]
 }
